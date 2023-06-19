@@ -78,6 +78,8 @@ const char string_Lego[] PROGMEM = "Lego";
 const char string_MagiQuest[] PROGMEM = "MagiQuest";
 const char string_Whynter[] PROGMEM = "Whynter";
 const char string_FAST[] PROGMEM = "FAST";
+const char string_CDTV[] PROGMEM = "Commodore CDTV";
+const char string_RC5_CDI[] PROGMEM = "CDI RC5";
 
 /*
  * !!Must be the same order as in decode_type_t in IRProtocol.h!!!
@@ -88,7 +90,7 @@ PROGMEM = { string_Unknown, string_PulseWidth, string_PulseDistance, string_Appl
         string_Kaseikyo_JVC, string_Kaseikyo_Mitsubishi, string_RC5, string_RC6, string_Samsung, string_Samsung48, string_SamsungLG,
         string_Sharp, string_Sony
 #if !defined(EXCLUDE_EXOTIC_PROTOCOLS)
-        , string_BangOlufsen, string_BoseWave, string_Lego, string_MagiQuest, string_Whynter, string_FAST
+        , string_BangOlufsen, string_BoseWave, string_Lego, string_MagiQuest, string_Whynter, string_FAST, string_CDTV, string_RC5_CDI
 #endif
         };
 

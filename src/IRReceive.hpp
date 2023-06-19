@@ -473,7 +473,8 @@ IRData* IRrecv::read() {
  * @return false if no IR receiver data available, true if data available.
  */
 bool IRrecv::decode() {
-    if (irparams.StateForISR != IR_REC_STATE_STOP) {
+   
+	if (irparams.StateForISR != IR_REC_STATE_STOP) {
         return false;
     }
 
@@ -486,6 +487,20 @@ bool IRrecv::decode() {
         decodedIRData.protocol = UNKNOWN;
         return true;
     }
+
+#if defined(DECODE_CDTV)
+    IR_TRACE_PRINTLN(F("Attempting Commodore CDTV decode"));
+    if (decodeCDTV()) {
+        return true;
+    }
+#endif
+
+#if defined(DECODE_RC5_CDI)
+    IR_TRACE_PRINTLN(F("Attempting RC5 CDI decode"));
+    if (decodeRC5_CDI()) {
+        return true;
+    }
+#endif
 
 #if defined(DECODE_NEC) || defined(DECODE_ONKYO)
     IR_TRACE_PRINTLN(F("Attempting NEC/Onkyo decode"));
@@ -594,6 +609,7 @@ bool IRrecv::decode() {
         return true;
     }
 #endif
+
 
     /*
      * Try the universal decoder for pulse distance protocols
@@ -1192,6 +1208,12 @@ void printActiveIRProtocols(Print *aSerial) {
 #endif
 #if defined(DECODE_MAGIQUEST)
     aSerial->print(F("MagiQuest, "));
+#endif
+#if defined(DECODE_CDTV)
+    aSerial->print(F("Commodore CDTV, "));
+#endif
+#if defined(DECODE_RC5_CDI)
+    aSerial->print(F("RC5 CDI, "));
 #endif
 #if defined(DECODE_DISTANCE_WIDTH)
     aSerial->print(F("Universal Pulse Distance Width, "));

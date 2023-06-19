@@ -396,6 +396,13 @@ size_t IRsend::write(decode_type_t aProtocol, uint16_t aAddress, uint16_t aComma
     } else if (aProtocol == FAST) {
         // We have only 8 bit command
         sendFAST(aCommand, aNumberOfRepeats);
+		
+    } else if (aProtocol == CDTV) {
+        // We have only 8 bit command
+        sendCDTV(aCommand, aNumberOfRepeats);
+		
+	} else if (aProtocol == RC5_CDI) {
+        sendRC5(aAddress, aCommand, aNumberOfRepeats, (aNumberOfRepeats > 0)); // No toggle for repeats
 
     } else if (aProtocol == LEGO_PF) {
         sendLegoPowerFunctions(aAddress, aCommand, aCommand >> 4, (aNumberOfRepeats < 0)); // send 5 autorepeats, except for dedicated repeats

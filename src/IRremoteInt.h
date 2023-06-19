@@ -273,6 +273,8 @@ public:
     bool decodeSharp(); // redirected to decodeDenon()
     bool decodeSony();
     bool decodeWhynter();
+	bool decodeCDTV();
+	bool decodeRC5_CDI();
 
     bool decodeDistanceWidth();
 
@@ -297,11 +299,11 @@ public:
 
     bool decode(
             decode_results *aResults)
-                    __attribute__ ((deprecated ("Please use IrReceiver.decode() without a parameter and IrReceiver.decodedIRData.<fieldname> .")));
+                    __attribute__ ((deprecated ("Please use IrReceiver.decode() without a parameter and IrReceiver.decodedIRData.<fieldname> ."))); // deprecated
 
     // for backward compatibility. Now in IRFeedbackLED.hpp
     void blink13(uint8_t aEnableLEDFeedback)
-            __attribute__ ((deprecated ("Please use setLEDFeedback() or enableLEDFeedback() / disableLEDFeedback().")));
+            __attribute__ ((deprecated ("Please use setLEDFeedback() or enableLEDFeedback() / disableLEDFeedback()."))); // deprecated
 
     /*
      * Internal functions
@@ -596,6 +598,8 @@ public:
                     __attribute__ ((deprecated ("This old function sends MSB first! Please use sendSony(aAddress, aCommand, aNumberOfRepeats).")));
     ;
     void sendWhynter(uint32_t aData, uint8_t aNumberOfBitsToSend);
+	void sendCDTV(unsigned long data, int nbits);
+	void sendRC5_CDI(uint8_t aAddress, uint8_t aCommand, int_fast8_t aNumberOfRepeats, bool aEnableAutomaticToggle = true);
 
 #if !defined(IR_SEND_PIN)
     uint8_t sendPin;

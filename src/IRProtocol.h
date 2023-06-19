@@ -68,7 +68,9 @@ typedef enum {
     LEGO_PF,
     MAGIQUEST,
     WHYNTER,
-    FAST
+    FAST,
+	CDTV,
+	RC5_CDI
 } decode_type_t;
 
 
@@ -154,6 +156,8 @@ struct PulseDistanceWidthProtocolConstants {
 #define SAMSUNG_KHZ     38
 #define KASEIKYO_KHZ    37
 #define RC5_RC6_KHZ     36
+#define CDTV_KHZ        40
+#define RC5_CDI_KHZ		36
 
 #if defined(__AVR__)
 const __FlashStringHelper* getProtocolString(decode_type_t aProtocol);

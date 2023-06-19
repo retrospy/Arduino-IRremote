@@ -99,7 +99,7 @@
 || defined(DECODE_PANASONIC) || defined(DECODE_LG) || defined(DECODE_NEC) || defined(DECODE_ONKYO) || defined(DECODE_SAMSUNG) \
 || defined(DECODE_SONY) || defined(DECODE_RC5) || defined(DECODE_RC6) \
 || defined(DECODE_DISTANCE_WIDTH) || defined(DECODE_HASH) || defined(DECODE_BOSEWAVE) \
-|| defined(DECODE_LEGO_PF) || defined(DECODE_MAGIQUEST) || defined(DECODE_FAST) || defined(DECODE_WHYNTER)))
+|| defined(DECODE_LEGO_PF) || defined(DECODE_MAGIQUEST) || defined(DECODE_FAST) || defined(DECODE_WHYNTER) || defined(DECODE_CDTV) || defined(DECODE_RC5_CDI)))
 /*
  * If no protocol is explicitly enabled, we enable all protocols
  */
@@ -120,6 +120,8 @@
 #define DECODE_MAGIQUEST // It modifies the RAW_BUFFER_LENGTH from 100 to 112
 #define DECODE_WHYNTER
 #define DECODE_FAST
+#define DECODE_CDTV
+#define DECODE_RC5_CDI
 #    endif
 
 #    if !defined(EXCLUDE_UNIVERSAL_PROTOCOLS)
@@ -310,6 +312,8 @@
 #include "ir_Samsung.hpp"
 #include "ir_Sony.hpp"
 #include "ir_FAST.hpp"
+#include "ir_CDTV.hpp"
+#include "ir_RC5_CDI.hpp"
 #include "ir_Others.hpp"
 #include "ir_Pronto.hpp" // pronto is an universal decoder and encoder
 #  if defined(DECODE_DISTANCE_WIDTH)     // universal decoder for pulse distance width protocols - requires up to 750 bytes additional program memory
