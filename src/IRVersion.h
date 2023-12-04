@@ -1,14 +1,12 @@
-/*
- * IRremoteExtensionClass.cpp
+/**
+ * @file IRversion.hpp
  *
- * Example for a class which itself uses the IRrecv class from IRremote
- *
- *  This file is part of Arduino-IRremote https://github.com/Arduino-IRremote/Arduino-IRremote.
+ * This file is part of Arduino-IRremote https://github.com/Arduino-IRremote/Arduino-IRremote.
  *
  ************************************************************************************
  * MIT License
  *
- * Copyright (c) 2021 Armin Joachimsmeyer
+ * Copyright (c) 2015-2023 Ken Shirriff http://www.righto.com, Rafi Khan, Armin Joachimsmeyer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +26,26 @@
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  ************************************************************************************
+ *
+ * For Ken Shiriffs original blog entry, see http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html
+ * Initially influenced by:
+ * http://www.arduino.cc/cgi-bin/yabb2/YaBB.pl?num=1210243556
+ * and http://zovirl.com/2008/11/12/building-a-universal-remote-with-an-arduino/
  */
-#include <Arduino.h>
 
-#include "IRremoteExtensionClass.h"
+#ifndef _IR_VERSION_HPP
+#define _IR_VERSION_HPP
 
-IRExtensionClass::IRExtensionClass(IRrecv *aIrReceiver) {
-    MyIrReceiver = aIrReceiver;
-}
-void IRExtensionClass::decode() {
-    Serial.println(F("Call decode()"));
-    MyIrReceiver->decode();
-}
+#define VERSION_IRREMOTE "4.2.0"
+#define VERSION_IRREMOTE_MAJOR 4
+#define VERSION_IRREMOTE_MINOR 2
+#define VERSION_IRREMOTE_PATCH 0
 
-void IRExtensionClass::resume() {
-    Serial.println(F("Call resume()"));
-    MyIrReceiver->resume();
-}
+/*
+ * Macro to convert 3 version parts into an integer
+ * To be used in preprocessor comparisons, such as #if VERSION_IRREMOTE_HEX >= VERSION_HEX_VALUE(3, 7, 0)
+ */
+#define VERSION_HEX_VALUE(major, minor, patch) ((major << 16) | (minor << 8) | (patch))
+#define VERSION_IRREMOTE_HEX  VERSION_HEX_VALUE(VERSION_IRREMOTE_MAJOR, VERSION_IRREMOTE_MINOR, VERSION_IRREMOTE_PATCH)
+
+#endif // _IR_VERSION_HPP
